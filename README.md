@@ -1,0 +1,1 @@
+# edgify-image-search-app
