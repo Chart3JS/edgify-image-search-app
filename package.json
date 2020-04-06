@@ -4,22 +4,60 @@
   "description": "Edgify React home assignment",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open --hot --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Chart3JS/edgify-image-search-app.git"
   },
   "keywords": [
-    "Edgify",
-    "React",
-    "home",
-    "assignment"
+    "Edgify"
   ],
   "author": "Alexander Plotkin",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Chart3JS/edgify-image-search-app/issues"
   },
-  "homepage": "https://github.com/Chart3JS/edgify-image-search-app#readme"
+  "dependencies": {
+    "@material-ui/core": "^4.9.9",
+    "@material-ui/icons": "^4.9.1",
+    "autoprefixer": "^9.7.5",
+    "axios": "^0.19.2",
+    "babel-regenerator-runtime": "^6.5.0",
+    "classnames": "^2.2.6",
+    "core-js": "^3.6.4",
+    "install": "^0.13.0",
+    "npm": "^6.14.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.9.0",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "react-router-redux": "^4.0.8",
+    "react-uuid": "^1.0.2",
+    "redux": "^4.0.5",
+    "redux-createreducer": "^2.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.1.3",
+    "regenerator-runtime": "^0.13.5",
+    "typeface-roboto": "0.0.75"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "autoprefixer": "^9.7.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.2",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.0.1",
+    "url-loader": "^3.0.0",
+    "webpack": "^4.41.3",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
 }

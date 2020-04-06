@@ -1,0 +1,7 @@
+.container {
+    display: flex;
+    width: 86%;
+    height: 92vh;
+    margin: 2% auto;
+    border: solid #000 2px;
+}

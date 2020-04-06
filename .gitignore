@@ -1,3 +1,5 @@
+.history/
+package-lock.json
 # Logs
 logs
 *.log
