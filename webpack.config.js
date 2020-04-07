@@ -13,6 +13,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
+            '_': path.resolve(__dirname, './'),
             '@': path.resolve(__dirname, './src/components'),
             $act: path.resolve(__dirname, './src/actions'),
             $reduce: path.resolve(__dirname, './src/reducers'),

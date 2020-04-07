@@ -1,3 +1,37 @@
 .container {
-    
+    display: flex;
+    height: 28px;
+    background-color: lightgrey;
+    width: 44%;
+}
+
+.iconContainer {
+    position: relative;
+    height: 28px;
+    width: 28px;
+    background-color: lightgrey;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.searchIconContainer {
+    padding-left: 10px;
+    left: -12px;
+} 
+
+.closeIconContainer {
+    left: 12px;
+}
+
+input {
+    border: none;
+    padding: 0 2px 0 0;
+    background: transparent;
+    width: 90%;
+    font-size: 16px;
+}
+
+input:focus {
+    border: none;
+    outline: transparent;
 }

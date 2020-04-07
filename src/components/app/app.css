@@ -1,7 +1,11 @@
 .container {
     display: flex;
-    width: 86%;
+    width: 80%;
     height: 92vh;
     margin: 2% auto;
     border: solid #000 2px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
 }

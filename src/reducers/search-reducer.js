@@ -1,20 +1,16 @@
 import createReducer from 'redux-createreducer';
 import { LOCATION_CHANGE } from 'react-router-redux';
-
+import { SEARCH_RESULT_OFFSET_SIZE } from '$const/search-constants';
 import {
     SEARCH_SUBMITTED,
     SEARCH_ERROR,
     SEARCH_SUCCESS,
     SEARCH_PERFORMED,
     RESULT_LIMIT_HIT,
+    SEARCH_RESET,
 } from '$act/search-actions';
 
-export const LOAD_STATUS_PENDING = 'LOAD_STATUS_PENDING';
-export const LOAD_STATUS_ERROR = 'LOAD_STATUS_ERROR';
-export const LOAD_STATUS_SUCCESS = 'LOAD_STATUS_SUCCESS';
-export const SEARCH_BATCH_SIZE = 50;
-
-export const searchResultTransformer = (rawResult) => {
+export const searchResultTransformer = rawResult => {
     const { 
         images: {
             fixed_height_small_still,
@@ -29,33 +25,39 @@ export const searchResultTransformer = (rawResult) => {
 
 const initialState = {
     results: [],
-    loadStatus: undefined,
+    isLoading: false,
+    isActive: false,
+    error: null,
     currentOffset: 0,
-    searchTerm: undefined,
+    searchTerm: null,
     noMoreResults: false,
+    displayedImage: null,
 };
 
 const actionHandlers = {
-    [SEARCH_SUBMITTED]: (state, { searchTerm }) => ({
+    [SEARCH_SUBMITTED]: (state, { searchTerm, continued }) => ({
         ...state,
-        searchTerm,
-        currentOffset: 0,
-        results: [],
+        searchTerm: continued ? state.searchTerm : searchTerm,
+        currentOffset: continued ? state.currentOffset : 0,
+        results: continued ? state.results : [],
+        isLoading: true,
+        noMoreResults: false,
     }),
-    [SEARCH_PERFORMED]: (state) => ({
+    [SEARCH_ERROR]: (state, { error }) => ({
         ...state,
-        loadStatus: LOAD_STATUS_PENDING,
+        isLoading: false,
+        error,
     }),
-    [SEARCH_ERROR]: (state) => ({
+    [SEARCH_RESET]: (state) => ({
         ...state,
-        loadStatus: LOAD_STATUS_ERROR
+        ...initialState,
     }),
     [SEARCH_SUCCESS]: (state, { results }) => ({
         ...state,
-        loadStatus: LOAD_STATUS_SUCCESS,
+        isLoading: false,
         results: state.results.concat(results.map(searchResultTransformer)),
-        currentOffset: state.currentOffset + SEARCH_BATCH_SIZE,
-        noMoreResults: results.length < SEARCH_BATCH_SIZE,
+        currentOffset: state.currentOffset + SEARCH_RESULT_OFFSET_SIZE,
+        noMoreResults: results.length < SEARCH_RESULT_OFFSET_SIZE,
     }),
     [RESULT_LIMIT_HIT]: (state, { results }) => ({
         ...state,
