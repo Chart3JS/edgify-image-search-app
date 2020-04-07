@@ -6,15 +6,14 @@ import styles from './app.css';
 import ImageDisplay from '@/image-display';
 import SearchInput from '@/search-input';
 import SearchResults from '@/search-results';
-import InfiniteScroll from '@/infinite-scroll';
 import {
     searchSubmitted,
     searchContinued,
     searchReset,
-    hideImage } from '$act/search-actions';
+    hideImage,
+    displayImage } from '$act/search-actions';
 
 const App = () => {
-    // debugger;
     const {
         displayedImage,
         isLoading,
@@ -30,13 +29,16 @@ const App = () => {
                 search={searchTerm => dispatch(searchSubmitted(searchTerm))}
                 reset={() => dispatch(searchReset())} 
             />
-            <InfiniteScroll
-                isLoading={isLoading}
-                isActive={!noMoreResults}
-                onActivate={() => dispatch(searchContinued())}
-            >
-                <SearchResults results={results} />
-            </InfiniteScroll>
+            {
+                results.length !== 0 &&
+                    <SearchResults
+                        numberOfColumns={3}
+                        results={results}
+                        moreResults={!noMoreResults}
+                        onDisplayImage={image => dispatch(displayImage(image))}
+                        onLoadMore={() => dispatch(searchContinued())}
+                    />
+            }
             {
                 displayedImage &&
                     <ImageDisplay

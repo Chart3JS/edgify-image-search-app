@@ -1,6 +1,22 @@
 .container {
+    max-height: 60vh;
+    max-width: 60%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.column {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
+}
+
+.loadMore {
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+    margin: 4px 0;
+}
+
+.loadMoreTitle {
+    margin: 0 0 0 6px;
 }

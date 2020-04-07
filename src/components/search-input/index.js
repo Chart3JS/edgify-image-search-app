@@ -15,18 +15,23 @@ const makeReset = (searchInput, callReset) =>
     ?   callReset()
     :   false;
 
-const iconStyle = { fontSize: 18, margin: '6px 0 5px 0' };
+const iconStyle = { fontSize: 18, margin: '9px 0' };
 
 const SearchInput = ({ isLoading, search, reset }) => {
     let searchElement = null;
     const inputAttrs = isLoading ? { disabled: 'disabled'} : {};
     return (
         <div className={styles.container}>
-            <div className={classNames(
-                {[styles.iconContainer]: true},
-                {[styles.searchIconContainer]: true}
+            <div className={classNames([
+                styles.iconContainer,
+                styles.searchIconContainer,
+            ]
             )}>
                 <SearchIcon
+                    className={classNames([
+                        styles.icon,
+                        styles.searchIcon
+                    ])}
                     onClick={() =>
                         !isLoading && makeSearch(searchElement.value, search)
                     }
@@ -39,13 +44,19 @@ const SearchInput = ({ isLoading, search, reset }) => {
                 type='text'
                 placeholder='Image Search'
             />
-            <div className={classNames(
-                {[styles.iconContainer]: true},
-                {[styles.closeIconContainer]: true}
+            <div className={classNames([styles.iconContainer, styles.closeIconContainer]
             )}>
                 <CloseIcon
-                    onClick={() =>
-                        !isLoading && makeReset(searchElement.value, reset)
+                    className={classNames([
+                        styles.icon,
+                        styles.closeIcon
+                    ])}
+                    onClick={() => {
+                        if (!isLoading) {
+                            makeReset(searchElement.value, reset);
+                            searchElement.value = '';
+                        }
+                    }
                     }
                     style={iconStyle}
                 />

@@ -5,7 +5,8 @@ import {
     SEARCH_SUBMITTED,
     SEARCH_ERROR,
     SEARCH_SUCCESS,
-    SEARCH_PERFORMED,
+    IMAGE_DISPLAY,
+    IMAGE_HIDE,
     RESULT_LIMIT_HIT,
     SEARCH_RESET,
 } from '$act/search-actions';
@@ -62,6 +63,14 @@ const actionHandlers = {
     [RESULT_LIMIT_HIT]: (state, { results }) => ({
         ...state,
         noMoreResults: true,
+    }),
+    [IMAGE_HIDE]: state => ({
+        ...state,
+        displayedImage: null,
+    }),
+    [IMAGE_DISPLAY]: (state, { image }) => ({
+        ...state,
+        displayedImage: image,
     }),
     [LOCATION_CHANGE]: () => initialState,
 }

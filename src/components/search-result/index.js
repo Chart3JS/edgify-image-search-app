@@ -1,15 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Box } from '@material-ui/core';
+import * as CustomTypes from '$type/search-types';
+import styles from './search-result.css';
 
-export default ({ searchResult, onClick }) => {
-    const { thumbnail, full } = searchResult;
+const SearchResult = ({ searchResult, onClick }) => {
+    const { thumbnail } = searchResult;
     return (
-        <div>
-            <a href="#" onClick={(e) => {
-                e.preventDefault();
-                onClick();    
-            }}>
-                <img src={thumbnail} />
+        <Box>
+            <a 
+                className={styles.imageLink}
+                href='#'
+                onClick={(e) => {
+                    e.preventDefault();
+                    onClick();    
+                }}
+            >
+                <img className={styles.image} src={thumbnail} />
             </a>
-        </div>
+        </Box>
     );
 }
+
+SearchResult.propTypes = {
+    searchResult: CustomTypes.SearchResult,
+    onClick: PropTypes.func.isRequired,
+};
+
+export default SearchResult;

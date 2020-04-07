@@ -8,7 +8,6 @@ import {
 } from '$const/search-constants';
 
 const selectSearchState = state => state.search;
-// debugger;
 const API_PARAMS = {
     apiKey,
     limit: SEARCH_RESULT_OFFSET_SIZE,

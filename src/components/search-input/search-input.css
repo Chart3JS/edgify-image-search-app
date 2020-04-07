@@ -1,15 +1,28 @@
 .container {
     display: flex;
-    height: 28px;
-    background-color: lightgrey;
+    height: 36px;
+    background-color: rgb(236, 231, 231);
     width: 44%;
+    margin: auto;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.searchIcon {
+    color: lightgreen;
+}
+
+.closeIcon {
+    color: lightpink
 }
 
 .iconContainer {
     position: relative;
-    height: 28px;
-    width: 28px;
-    background-color: lightgrey;
+    height: 36px;
+    width: 36px;
+    background-color:  rgb(236, 231, 231);
     border-radius: 50%;
     display: inline-block;
 }
@@ -20,7 +33,8 @@
 } 
 
 .closeIconContainer {
-    left: 12px;
+    left: 11px;
+    padding-left: 2px;
 }
 
 input {

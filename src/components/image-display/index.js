@@ -4,7 +4,7 @@ import styles from './image-display.css';
 import classNames from 'classnames'
 import * as CustomTypes from '$type/search-types';
 
-const ImageDisplay = ({ image, onCloseCalled }) => 
+const ImageDisplay = ({ image, onCloseCalled }) =>
     <div
         className={classNames(styles.container)}
         onClick={onCloseCalled}>

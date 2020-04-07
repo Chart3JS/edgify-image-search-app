@@ -1,14 +1,14 @@
-import React, { Suspense } from "react";
+import React, { Suspense } from 'react';
 import 'babel-regenerator-runtime';
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { createLogger } from "redux-logger";
-import reducer from "./reducers";
+import { createLogger } from 'redux-logger';
+import reducer from './reducers';
 import appSagas from './sagas';
-import App from "@/app";
+import App from '@/app';
 import LoadingPlaceholder from '@/loading-placeholder';
 
 const sagas = createSagaMiddleware();
@@ -23,5 +23,5 @@ ReactDOM.render(
       </BrowserRouter>
     </Suspense>
   </Provider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
