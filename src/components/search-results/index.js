@@ -9,32 +9,11 @@ import styles from './search-results.css';
 
 const LOAD_MORE_TITLE = 'Load more results';
 
-const buildResultColumns = (results, numberOfColumns) => {
-  const numberOfResults = results.length;
-  const resultColumns = [];
-  // init/fill n(NUMBER_OF_COLUMNS)-dimensional array of columns
-  for (let i = 0; i < numberOfColumns; i++) {
-    resultColumns.push([]);
-  }
-  let columnCounter = 0;
-  for (let i = 0; i < numberOfResults; i++) {
-    resultColumns[columnCounter].push(results[i]);    
-    if (columnCounter === (numberOfColumns - 1)) {
-      columnCounter = 0;
-    } else {
-      columnCounter += 1;
-    }
-  }
-  return resultColumns;
-};
-
 const SearchResults = ({
-  numberOfColumns,
-  results,
+  columns,
   moreResults,
   onDisplayImage,
   onLoadMore }) => {
-  const columns = buildResultColumns(results, numberOfColumns);
   return (
     <>
       <Grid container spacing={3} className={styles.container}>
@@ -81,8 +60,7 @@ const SearchResults = ({
 };
 
 SearchResults.propTypes = {
-  numberOfColumns: PropTypes.number.isRequired,
-  results: PropTypes.arrayOf(CustomTypes.SearchResult),
+  columns: PropTypes.arrayOf(PropTypes.arrayOf(CustomTypes.SearchResult)),
   moreResults: PropTypes.bool.isRequired,
   onLoadMore: PropTypes.func.isRequired,
   onDisplayImage: PropTypes.func.isRequired,

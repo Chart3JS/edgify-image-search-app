@@ -1,6 +1,8 @@
 import createReducer from 'redux-createreducer';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { SEARCH_RESULT_OFFSET_SIZE } from '$const/search-constants';
+import {
+    SEARCH_RESULT_OFFSET_SIZE,
+    NUMBER_OF_RESULT_COLUMNS } from '$const/search-constants';
 import {
     SEARCH_SUBMITTED,
     SEARCH_ERROR,
@@ -24,8 +26,29 @@ export const searchResultTransformer = rawResult => {
     };
 };
 
+const buildResultColumns = results => {
+  debugger;  
+  const numberOfResults = results.length;
+  const resultColumns = [];
+  // init/fill n(NUMBER_OF_RESULT_COLUMNS)-dimensional array of columns
+  for (let i = 0; i < NUMBER_OF_RESULT_COLUMNS; i++) {
+    resultColumns.push([]);
+  }
+  let columnCounter = 0;
+  for (let i = 0; i < numberOfResults; i++) {
+    resultColumns[columnCounter].push(results[i]);
+    if (columnCounter === NUMBER_OF_RESULT_COLUMNS - 1) {
+      columnCounter = 0;
+    } else {
+      columnCounter += 1;
+    }
+  }
+  return resultColumns;
+};
+
 const initialState = {
     results: [],
+    columns: [],
     isLoading: false,
     isActive: false,
     error: null,
@@ -53,13 +76,17 @@ const actionHandlers = {
         ...state,
         ...initialState,
     }),
-    [SEARCH_SUCCESS]: (state, { results }) => ({
-        ...state,
-        isLoading: false,
-        results: state.results.concat(results.map(searchResultTransformer)),
-        currentOffset: state.currentOffset + SEARCH_RESULT_OFFSET_SIZE,
-        noMoreResults: results.length < SEARCH_RESULT_OFFSET_SIZE,
-    }),
+    [SEARCH_SUCCESS]: (state, { results }) => {
+        const temp = state.results.concat(results.map(searchResultTransformer));
+        return {
+            ...state,
+            isLoading: false,
+            results: temp,
+            columns: buildResultColumns(temp),
+            currentOffset: state.currentOffset + SEARCH_RESULT_OFFSET_SIZE,
+            noMoreResults: results.length < SEARCH_RESULT_OFFSET_SIZE,
+        }
+    },
     [RESULT_LIMIT_HIT]: (state, { results }) => ({
         ...state,
         noMoreResults: true,

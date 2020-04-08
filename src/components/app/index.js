@@ -18,7 +18,7 @@ const App = () => {
         displayedImage,
         isLoading,
         noMoreResults,
-        results,
+        columns,
     } = useSelector(state => state.search);
     const dispatch = useDispatch();
     return (
@@ -30,10 +30,9 @@ const App = () => {
                 reset={() => dispatch(searchReset())} 
             />
             {
-                results.length !== 0 &&
+                columns.length !== 0 &&
                     <SearchResults
-                        numberOfColumns={3}
-                        results={results}
+                        columns={columns}
                         moreResults={!noMoreResults}
                         onDisplayImage={image => dispatch(displayImage(image))}
                         onLoadMore={() => dispatch(searchContinued())}
