@@ -27,7 +27,6 @@ export const searchResultTransformer = rawResult => {
 };
 
 const buildResultColumns = results => {
-  debugger;  
   const numberOfResults = results.length;
   const resultColumns = [];
   // init/fill n(NUMBER_OF_RESULT_COLUMNS)-dimensional array of columns
@@ -87,7 +86,7 @@ const actionHandlers = {
             noMoreResults: results.length < SEARCH_RESULT_OFFSET_SIZE,
         }
     },
-    [RESULT_LIMIT_HIT]: (state, { results }) => ({
+    [RESULT_LIMIT_HIT]: (state) => ({
         ...state,
         noMoreResults: true,
     }),
