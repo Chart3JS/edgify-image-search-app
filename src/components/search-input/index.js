@@ -36,6 +36,7 @@ const SearchInput = ({ isLoading, search, reset }) => {
                         !isLoading && makeSearch(searchElement.value, search)
                     }
                     style={iconStyle}
+                    id='search_button'
                 />
             </div>
             <input
@@ -43,6 +44,7 @@ const SearchInput = ({ isLoading, search, reset }) => {
                 ref={elem => searchElement = elem}
                 type='text'
                 placeholder='Image Search'
+                id='search_input'
             />
             <div className={classNames([styles.iconContainer, styles.closeIconContainer]
             )}>
@@ -59,6 +61,7 @@ const SearchInput = ({ isLoading, search, reset }) => {
                     }
                     }
                     style={iconStyle}
+                    id='reset_button'
                 />
             </div>
         </div>

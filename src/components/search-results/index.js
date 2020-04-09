@@ -16,7 +16,12 @@ const SearchResults = ({
   onLoadMore }) => {
   return (
     <>
-      <Grid container spacing={3} className={styles.container}>
+      <Grid
+        id='results_container'
+        container
+        spacing={3}
+        className={styles.container}
+      >
         {
           columns.map(column =>
             <Grid
