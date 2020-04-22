@@ -45,6 +45,7 @@ const SearchInput = ({ isLoading, search, reset }) => {
                 type='text'
                 placeholder='Image Search'
                 id='search_input'
+                onKeyDown={e => e.keyCode === 13 && makeSearch(searchElement.value, search)}
             />
             <div className={classNames([styles.iconContainer, styles.closeIconContainer]
             )}>

@@ -18,8 +18,7 @@ module.exports = {
             $act: path.resolve(__dirname, './src/actions'),
             $reduce: path.resolve(__dirname, './src/reducers'),
             $type: path.resolve(__dirname, './src/custom-types'),
-            $const: path.resolve(__dirname, './src/constants'),
-            
+            $const: path.resolve(__dirname, './src/constants'),            
         }
     },
     module: {
